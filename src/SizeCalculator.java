@@ -1,5 +1,7 @@
-import java.io.File;
 import java.util.HashMap;
+import java.util.concurrent.atomic.AtomicLong;
+
+import static java.lang.Long.valueOf;
 
 public class SizeCalculator {
     private static char[] sizeMultipliers = {'B', 'K', 'M', 'G', 'T'};
@@ -24,9 +26,9 @@ public class SizeCalculator {
                 .replaceAll("[0-9\\s+]+", "")
                 .charAt(0);
         int multiplier = char2multiplier.get(sizeFactor);
-        long length = multiplier * Long.valueOf(
-                size.replaceAll("[^0-9]", ""));
-        return length;
+        AtomicLong length = new AtomicLong(multiplier * Long.parseLong(
+                size.replaceAll("[^0-9]", "")));
+        return length.get();
     }
 
     private static HashMap<Character, Integer> getMultipliers() {
