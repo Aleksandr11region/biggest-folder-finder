@@ -1,8 +1,6 @@
 import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicLong;
 
-import static java.lang.Long.valueOf;
-
 public class SizeCalculator {
     private static char[] sizeMultipliers = {'B', 'K', 'M', 'G', 'T'};
     private static HashMap<Character, Integer>
